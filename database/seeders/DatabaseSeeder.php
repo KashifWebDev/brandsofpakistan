@@ -15,9 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        BlogCategory::factory()->count(10)->create();
-        Blog::factory()->count(10)->create();
-
         $this->call([
             RoleSeeder::class,
             PermissionSeeder::class,
@@ -25,5 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(1)->create();
+        BlogCategory::factory()->count(10)->create();
+        Blog::factory()->count(10)->create();
     }
 }

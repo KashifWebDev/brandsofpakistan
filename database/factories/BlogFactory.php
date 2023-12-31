@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\BlogCategory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -40,6 +41,7 @@ class BlogFactory extends Factory
                     rand(1,5)
                 )
             ]),
+            'user_id' => User::all()->random()->id,
             'featured' => rand(0, 10) > 5
         ];
     }
