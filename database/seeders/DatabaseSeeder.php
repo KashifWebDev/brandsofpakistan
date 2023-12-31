@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\BlogFactory;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,19 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        BlogCategory::factory()->count(10)->create();
+        Blog::factory()->count(10)->create();
 
         $this->call([
             RoleSeeder::class,
             PermissionSeeder::class,
             AssignPermissionsToRoles::class,
-            BlogCategorySeeder::class,
-            BlogSeeder::class,
         ]);
+
+        User::factory(1)->create();
     }
 }

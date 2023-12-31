@@ -18,7 +18,7 @@ class BlogFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $this->faker->sentence(rand(4, 8));
+        $title = $this->faker->sentence();
 
         return [
             'category_id' => BlogCategory::all()->random()->id,
@@ -27,16 +27,17 @@ class BlogFactory extends Factory
             'description' => $this->faker->sentence(5),
             'cover_image' => $this->faker->imageUrl(),
             'content' => $this->faker->text(),
-            'status' => $this->faker->randomElements(['draft', 'publish']),
+            'status' => $this->faker->randomElement(['draft', 'publish']),
             'tags' => json_encode([
-                $this->faker->randomElement(
+                $this->faker->randomElements(
                     [
                         "house",
                         "flat",
                         "apartment",
                         "room", "shop",
                         "lot", "garage"
-                    ]
+                    ],
+                    rand(1,5)
                 )
             ]),
             'featured' => rand(0, 10) > 5
