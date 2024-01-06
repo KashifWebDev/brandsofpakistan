@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Traits\APIResponseTrait;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use APIResponseTrait;
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
@@ -25,6 +28,11 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+        $this->renderable(function (AuthenticationException $e, $request){
+            if($request->is('api/*')){
+                return $this->errorResponse('Unauthenticated', [], 401);
+            }
         });
     }
 }

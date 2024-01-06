@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
@@ -20,8 +21,7 @@ class Blog extends Model
         'content',
         'status',
         'tags',
-        'featured',
-        'user_id'
+        'featured'
     ];
     protected $casts = [
         'tags' => 'array'
@@ -33,5 +33,9 @@ class Blog extends Model
 
     function category(): BelongsTo{
         return $this->belongsTo(BlogCategory::class);
+    }
+
+    function comments(): HasMany{
+        return $this->hasMany(BlogComment::class);
     }
 }

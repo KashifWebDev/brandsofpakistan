@@ -10,14 +10,14 @@ trait APIResponseTrait{
             'success' => true,
             'message' => $message,
             'data' => $data
-        ]);
+        ], $status);
     }
     public function errorResponse($message, $data = [], $status = 422): JsonResponse{
         return response()->json([
             'success' => false,
             'message' => $message,
             'data' => $data
-        ]);
+        ], $status);
     }
 
 }

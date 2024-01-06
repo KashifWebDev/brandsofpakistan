@@ -24,7 +24,8 @@ class BlogResource extends JsonResource
             'content' => $this->content,
             'status' => $this->status,
             'tags' => json_decode($this->tags),
-            'featured' => boolval($this->featured)
+            'featured' => boolval($this->featured),
+            'comments' => BlogCommentResource::collection($this->comments)
         ];
     }
 }

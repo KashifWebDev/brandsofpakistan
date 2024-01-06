@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $roles = [
-            ['id' => 1, 'name' => 'Administrator'],
+            ['id' => 1, 'name' => 'Super Admin'],
             ['id' => 2, 'name' => 'Writer'],
         ];
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,10 +20,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             AssignPermissionsToRoles::class,
+            UserSeeder::class
         ]);
 
-        User::factory(1)->create();
         BlogCategory::factory()->count(10)->create();
-        Blog::factory()->count(10)->create();
+
+        Blog::factory()->count(10)->hasComments(rand(2,5))->create();
     }
 }
